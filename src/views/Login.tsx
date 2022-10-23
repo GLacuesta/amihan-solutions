@@ -15,7 +15,16 @@ const Login = () => {
   const [isLoading ,setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
+    /*
+    we can use localStorage as well since we're saving the accessToken there (usually happens in real world app);
+    normally the correct accessToken that'll be use for fetching other data will determine whether the app will log out the user or not
+
     if (!!get(authState, 'creds.access_token', '')) {
+      return navigate('/');
+    }
+    */
+
+    if (!!localStorage.getItem('accessToken')) {
       return navigate('/');
     }
 
@@ -50,7 +59,7 @@ const Login = () => {
           return errors;
         }
 
-        if (values.password.length < 1) {
+        if (values.password.length < 6) {
           errors['password']= 'Minimum of 6 characters';
           return errors;
         }

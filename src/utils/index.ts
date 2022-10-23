@@ -67,8 +67,3 @@ export const rebuildTable = (mouseDownIndex: string, mouseUpIndex: string, table
   }
   return updatedTable;
 }
-
-/*
-USERNAME: exercisetestuser
-                               - PW: RmWgdJRqMbTipANqDeFl1
-*/
