@@ -1,5 +1,6 @@
 import { cloneDeep, get, isEmpty, set } from 'lodash';
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
+import { ICol, IRow } from '../interface';
 import { buildArray, rebuildTable } from '../utils';
 
 interface ITable {
@@ -8,6 +9,10 @@ interface ITable {
   color: string;
 }
 
+/*
+  Can also use useRef instead of using useState when selecting blocks 
+  and changing their colors though conflict with rerender may rise
+*/
 const Home = () => {
   const [blockLimit, setBlockLimit] = useState<number>(10);
   const [table, setTable] = useState<any>();
@@ -42,11 +47,11 @@ const Home = () => {
 
 
   const renderBlocks = () => {
-    const arr: any = table;
+    const arr: Array<IRow> = table;
     return !isEmpty(arr) && (
-      arr.map((row: any, rowIndex: number)=> (
+      arr.map((row: IRow, rowIndex: number)=> (
         <div className="flex" key={row.rowId}>
-          {row.cols.map((col: any, colIndex: number) => (
+          {row.cols.map((col: ICol, colIndex: number) => (
             <div
               className={`border border-red flex flex-col p-6 ${col.color}`}
               key={`${row.rowId}-${col.colId}`}
